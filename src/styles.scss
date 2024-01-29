@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media screen and (max-width: 390px ) {
+    body {
+      font-size: small;
+      max-width: auto;
+    }
+  
+    p {
+      font-size: small;
+    }
+  
+    .bni {
+      width: 80px;
+    }
+  
+    .notif{
+      width: 30px;
+    }
+  
+    .promo {
+      margin-top: 4px;
+      margin-bottom: 2px;
+    }
+  
+    span {
+      font-size: smaller;
+    }
+  
+    img {
+      width: auto;
+      height: auto;
+    }
+  
+    .footer-btn-qris img{
+      width: 85px;
+      height: 85px;
+    }
+  
+    .footer-btn img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  
+@media only screen and (min-width: 420px){
+  html{
+    background-color: rgba(189,186,181,1);
+  }
+
+    .page{
+      background-color: rgb(255, 255, 255);
+      max-width: 400px;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      margin: auto; 
+    }
+  }
+
+@media only screen and (max-width: 420px){  
+  .homescreen {
+    @apply mt-10;
+  }
+
+  .promo img {
+    @apply w-auto h-auto max-h-full;
+  }
+
+  .page{
+    @apply w-auto;
+    @apply h-auto;
+    @apply justify-center;
+    @apply items-center;
+    @apply m-auto; 
+    @apply shadow-lg;
+  }
+}
+  
+   

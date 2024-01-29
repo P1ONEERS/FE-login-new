@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Sharing Bill</title>
+  </head>
+  <div class="page">
+    <body>
+      <header>
+        <nav class="flex items-center justify-between">
+          <button routerLink="/summarybill" class="items-center mt-12 ml-6">
+            <img src="./assets/back.svg" alt="Back" class="w-6 h-6" />
+          </button>
+          <p class="text-gray-600 text-lg font-bold mt-12">Sharing Bill</p>
+          <button
+            routerLink="/home"
+            class="flex items-center justify-end mt-12"
+          >
+            <img src="./assets/home.svg" alt="Close" class="w-6 h-6 mr-6" />
+          </button>
+        </nav>
+      </header>
+
+      <div class="justify-center ml-6 mt-6">
+        <div class="font-semibold text-xs font-['Open Sans'] text-[#F15A23]">
+          Detail Bill
+        </div>
+        <div class="mt-2 text-black font-semibold text-lg font-['Open Sans']">
+          IKKUDO ICHI - Central Park
+        </div>
+        <div class="mt-2 text-black font-regular text-xs font-['Open Sans']">
+          Tanggal Bill : 13/01/2024 17:07
+        </div>
+        <div
+          class="mt-2 font-semibold text-xs font-['Open Sans'] text-[#F15A23]"
+        >
+          IDR 435,500
+        </div>
+        <p class="text-gray-600 font-semibold text-xs mt-4">
+          Teman Sharing Bill
+        </p>
+
+        <!-- riwayatbill.component.html -->
+        <div style="max-height: 550px; overflow-y: auto">
+          <div class="w-full">
+            <table class="w-full">
+              <tr *ngFor="let imagePath of imagePaths; let i = index">
+                <td class="w-full">
+                  <div class="my-2 flex justify-start w-full items-center">
+                    <img [src]="imagePath" alt="Item" class="w-12 h-12" />
+                    <div class="flex flex-col ml-4 items-start">
+                      <p
+                        class="text-xs font-medium font-['Open Sans'] text-gray-600"
+                      >
+                        Melati
+                      </p>
+                      <p
+                        class="mt-1 text-md font-bold font-['Open Sans'] text-gray-600"
+                      >
+                        IDR 125,942
+                      </p>
+                    </div>
+                  </div>
+                  <hr class="border-dashed border-[#D8D8D8] mt-2 mr-6 mb-2" />
+                  <button
+                    (click)="toggleDetailBill(i)"
+                    class="flex justify-between items-center text-black font-semibold text-xs font-['Open Sans']"
+                  >
+                    <ng-container
+                      *ngIf="
+                        showDetailBill && i === selectedItemIndex;
+                        else showDetailIcon
+                      "
+                    >
+                      <span>Detail Bill</span>
+                      <i class="fas fa-chevron-circle-up"></i>
+                    </ng-container>
+                    <ng-template #showDetailIcon>
+                      <span>Detail Bill</span>
+                      <i class="fas fa-angle-down"></i>
+                    </ng-template>
+                  </button>
+
+                  <hr class="border-[#D8D8D8] mt-2 mr-6" />
+
+                  <div *ngIf="showDetailBill && i === selectedItemIndex">
+                    <div
+                      class="mr-6 mt-2 flex justify-between w-full items-center"
+                    >
+                      <p
+                        class="text-black text-xs font-semibold font-['Open Sans']"
+                      >
+                        + Pajak
+                      </p>
+                      <div class="flex mr-12 mt-1">
+                        <div
+                          class="text-black text-xs font-regular font-['Open Sans'] ml-4"
+                        >
+                          30.000
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="mr-6 mt-1 flex justify-between w-full items-center"
+                    >
+                      <p
+                        class="text-black text-xs font-semibold font-['Open Sans']"
+                      >
+                        + Biaya Layanan
+                      </p>
+                      <div class="flex mr-12 mt-1">
+                        <div
+                          class="text-black text-xs font-regular font-['Open Sans'] ml-4"
+                        >
+                          30.000
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex justify-between w-full items-center mt-1">
+                      <p
+                        class="text-black text-xs font-semibold font-['Open Sans']"
+                      >
+                        - Diskon
+                      </p>
+                      <div class="flex mt-1 mr-12">
+                        <div
+                          class="text-black text-xs font-regular font-['Open Sans'] ml-4"
+                        >
+                          0
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex justify-between w-full items-center mt-1">
+                      <p
+                        class="text-black text-xs font-semibold font-['Open Sans']"
+                      >
+                        Jumlah Item
+                      </p>
+                      <div class="flex mt-1 mr-12">
+                        <div
+                          class="text-black text-xs font-regular font-['Open Sans'] ml-4"
+                        >
+                          10
+                        </div>
+                      </div>
+                    </div>
+                    <!-- ... (remaining detail content) ... -->
+                    <hr class="mr-6 border-[#D8D8D8] border-dashed mt-2" />
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </body>
+  </div>
+</html>

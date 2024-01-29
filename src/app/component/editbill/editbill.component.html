@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Sharing Bill</title>
+  </head>
+  <div class="page">
+    <body [@fadeIn]="fadeInState">
+      <header>
+        <nav class="flex items-center justify-between">
+          <button routerLink="/hasilscan" class="items-center mt-12 ml-6">
+            <img src="./assets/back.svg" alt="Back" class="w-6 h-6" />
+          </button>
+          <p class="text-gray-600 text-lg font-bold mt-12">Sharing Bill</p>
+          <button routerLink="/home" class="items-center mt-12 mr-6">
+            <img src="./assets/home.svg" alt="Home" class="w-6 h-6" />
+          </button>
+        </nav>
+      </header>
+
+      <div class="justify-center ml-6 mt-6 mr-6">
+        <div class="font-semibold text-xs font-['Open Sans'] text-[#F15A23]">
+          Sharing Bill
+        </div>
+        <div class="text-black font-semibold text-lg font-['Open Sans']">
+          Edit Item Bill
+        </div>
+        <div class="text-black font-regular text-xs font-['Open Sans']">
+          Anda dapat mengedit jumlah dan harga masing-masing item
+        </div>
+      </div>
+
+      <div style="max-height: 620px; overflow-y: auto">
+        <form [formGroup]="editForm" class="ml-6 mr-6 mt-4">
+          <div class="mb-4">
+            <div class="text-black text-md font-semibold font-['Open Sans']">
+              {{ dataService.tempat }}
+            </div>
+            <div class="flex mt-2 mb-2">
+              <p
+                class="text-black text-xs font-regular font-['Open Sans'] mr-2"
+              >
+                {{ dataService.tanggal }}
+              </p>
+              <p class="text-black text-xs font-regular font-['Open Sans']">
+                {{ dataService.jam }}
+              </p>
+            </div>
+            <hr class="border-[#D8D8D8] w-full" />
+          </div>
+
+          <div class="mb-4" *ngFor="let item of items">
+            <div class="flex">
+              <input
+                type="text"
+                id="itemName"
+                formControlName="itemName"
+                class="border rounded-lg w-full p-1 mr-4"
+                [value]="item.itemName"
+              />
+              <button routerLink="/home" class="mr-2">
+                <img src="./assets/trash.svg" alt="Delete" class="w-7 h-7" />
+              </button>
+            </div>
+            <div class="flex mt-2 justify-end">
+              <input
+                type="text"
+                id="quantity"
+                formControlName="quantity"
+                class="rounded-lg border text-center w-10 mx-5 p-1 text-sm"
+                [value]="item.quantity"
+              />
+              <div
+                class="text-black text-sm font-regular font-['Open Sans'] mt-2 mx-5"
+              >
+                X
+              </div>
+              <input
+                type="number"
+                id="price"
+                formControlName="price"
+                class="rounded-lg border text-center w-20 ml-5 mr-2 p-1 text-sm"
+                [value]="item.price"
+              />
+            </div>
+            <hr class="border-[#D8D8D8] w-full mt-4" />
+          </div>
+
+          <!-- <div class="mb-4">
+            <div class="flex">
+              <input type="text" id="itemName" formControlName="itemName" class="border rounded-lg w-full p-1 mr-4">
+              <button routerLink="/home" class="mr-2">
+                <img src="./assets/trash.svg" alt="Delete" class="w-7 h-7" />
+              </button>
+            </div>
+            <div class="flex mt-2 justify-end">
+              <input type="text" id="quantity" formControlName="quantity" class="rounded-lg border text-center w-10 mx-5 p-1 text-sm">
+              <div class="text-black text-sm font-regular font-['Open Sans'] mt-2 mx-5">X</div>
+              <input type="number" id="price" formControlName="price" class="rounded-lg border text-center w-20 ml-5 mr-2 p-1 text-sm">
+            </div>
+            <hr class="border-[#D8D8D8] w-full mt-4 " />
+          </div> -->
+
+          <!-- <button class="flex items-center mb-4">
+          <img src="./assets/plus.svg" alt="Add" class="w-5 h-5 mr-2" />
+          <p class="text-sm font-['Open Sans'] font-semibold text-[#2F5DD1]">
+            Tambah Item
+          </p>
+        </button> -->
+
+          <div class="mb-4">
+            <p class="text-md font-['Open Sans'] font-semibold text-black">
+              Summary
+            </p>
+            <hr class="border-[#D8D8D8] w-full mt-2" />
+          </div>
+
+          <div class="mb-4">
+            <div class="flex justify-between mb-4">
+              <div class="black text font-semibold font-['Open Sans'] text-sm">
+                Sub Total
+              </div>
+              <div class="black text font-regular font-['Open Sans'] text-sm">
+                370,000
+              </div>
+            </div>
+
+            <div class="flex justify-between mb-4">
+              <div class="black text font-semibold font-['Open Sans'] text-sm">
+                Pajak
+              </div>
+              <input
+                type="number"
+                id="pajak"
+                class="rounded-lg border text-center w-48 p-1 black font-regular font-['Open Sans'] text-sm"
+              />
+            </div>
+
+            <div class="flex justify-between mb-4">
+              <div class="black text font-semibold font-['Open Sans'] text-sm">
+                Biaya Layanan
+              </div>
+              <input
+                type="number"
+                id="pajak"
+                class="rounded-lg border text-center w-48 p-1 black font-regular font-['Open Sans'] text-sm"
+              />
+            </div>
+            <div class="flex justify-between mb-4">
+              <div class="black text font-semibold font-['Open Sans'] text-sm">
+                Diskon
+              </div>
+              <input
+                type="number"
+                id="pajak"
+                class="rounded-lg border text-center w-48 p-1 black text font-regular font-['Open Sans'] text-sm"
+              />
+            </div>
+            <div class="flex justify-between mb-4">
+              <div class="black text font-semibold font-['Open Sans'] text-sm">
+                Biaya Lainnya
+              </div>
+              <input
+                type="number"
+                id="pajak"
+                class="rounded-lg border text-center w-48 p-1 black text font-regular font-['Open Sans'] text-sm"
+              />
+            </div>
+            <div class="flex justify-between mb-4">
+              <div class="black text font-semibold font-['Open Sans'] text-sm">
+                Total
+              </div>
+              <div class="black text font-regular font-['Open Sans'] text-sm">
+                435,500
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="flex items-center justify-center">
+        <button
+          type="button"
+          (click)="saveChanges()"
+          routerLink="/tambahteman"
+          class="rounded-lg bg-[#40787F] p-2 ml-4 mr-4 text-white text-center mt-8 font-semibold font-['Open Sans'] w-full text-sm"
+        >
+          Konfirmasi
+        </button>
+      </div>
+    </body>
+  </div>
+</html>

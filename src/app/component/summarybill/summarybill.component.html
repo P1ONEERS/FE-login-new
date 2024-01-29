@@ -1,0 +1,148 @@
+<!-- src/app/summarybill/summarybill.component.html -->
+<div class="page">
+  <header>
+    <nav class="flex items-center justify-between">
+      <button routerLink="/pilihitem" class="items-center mt-12 ml-6">
+        <img src="./assets/back.svg" alt="Back" class="w-6 h-6" />
+      </button>
+      <p class="text-gray-600 text-lg font-bold mt-12">Sharing Bill</p>
+      <button routerLink="/home" class="items-center mt-12 mr-6">
+        <img src="./assets/home.svg" alt="Home" class="w-6 h-6" />
+      </button>
+    </nav>
+  </header>
+  <body>
+    <div class="justify-center ml-6 mt-6">
+      <div class="font-semibold text-xs font-['Open Sans'] text-[#F15A23]">
+        Jumlah Total
+      </div>
+      <div class="mt-2 text-black font-semibold text-lg font-['Open Sans']">
+        IKKUDO ICHI - Central Park
+      </div>
+      <div class="mt-2 text-black font-regular text-xs font-['Open Sans']">
+        Tanggal Bill : 13/01/2024 17:07
+      </div>
+      <div class="mt-2 font-semibold text-xs font-['Open Sans'] text-[#F15A23]">
+        IDR 435,500
+      </div>
+    </div>
+
+    <div class="flex items-center ml-6 mt-8">
+      <img src="./assets/karakter/gambar_4.svg" alt="Teman" class="w-12 h-12" />
+      <div class="flex flex-col ml-4 items-start">
+        <p class="text-xs font-medium font-['Open Sans'] text-gray-600">Anda</p>
+        <p class="mt-1 text-md font-bold font-['Open Sans'] text-gray-600">
+          IDR 150,659
+        </p>
+      </div>
+    </div>
+
+    <hr class="mt-6 ml-6 mr-6 border-[#D8D8D8]" />
+
+    <div class="w-full">
+      <table class="w-full">
+        <tr>
+          <td class="w-full">
+            <div class="ml-6 my-2 flex justify-between w-full items-center">
+              <p class="text-black text-sm font-semibold font-['Open Sans']">
+                Nama item
+              </p>
+              <div class="flex mt-1 mr-12">
+                <div
+                  class="text-black text-xs font-regular font-['Open Sans'] ml-4"
+                >
+                  X 1
+                </div>
+                <div
+                  class="text-black text-xs font-regular font-['Open Sans'] ml-4"
+                >
+                  30.000
+                </div>
+              </div>
+            </div>
+            <button
+              (click)="toggleDetailBill()"
+              class="ml-6 flex justify-between items-center text-black font-semibold text-xs font-['Open Sans'] ml-4"
+            >
+              <ng-container *ngIf="showDetailBill; else showDetailIcon">
+                <!-- Icon for Hide Detail Bill (e.g., Font Awesome icon) -->
+                <span class="mr-5">Detail Bill</span>
+
+                <i class="fas fa-angle-up mt-1"></i>
+              </ng-container>
+              <ng-template #showDetailIcon>
+                <!-- Icon for Show Detail Bill (e.g., Font Awesome icon) -->
+                <span class="mr-5">Detail Bill</span>
+                <i class="fas fa-angle-down mt-1"></i>
+              </ng-template>
+            </button>
+
+            <hr class="border-[#D8D8D8] mt-2 mx-6" />
+
+            <!-- Uncomment the *ngIf directive -->
+            <div *ngIf="showDetailBill">
+              <div class="mx-6 mt-2 flex justify-between w-full items-center">
+                <p class="text-black text-xs font-semibold font-['Open Sans']">
+                  + Pajak
+                </p>
+                <div class="flex mr-12 mt-1">
+                  <div
+                    class="text-black text-xs font-regular font-['Open Sans'] ml-4"
+                  >
+                    30.000
+                  </div>
+                </div>
+              </div>
+              <div class="ml-6 flex justify-between w-full items-center">
+                <p class="text-black text-xs font-semibold font-['Open Sans']">
+                  + Biaya Layanan
+                </p>
+                <div class="flex mt-1 mr-12">
+                  <div
+                    class="text-black text-xs font-regular font-['Open Sans'] ml-4"
+                  >
+                    30.000
+                  </div>
+                </div>
+              </div>
+              <div class="ml-6 flex justify-between w-full items-center">
+                <p class="text-black text-xs font-semibold font-['Open Sans']">
+                  - Diskon
+                </p>
+                <div class="flex mt-1 mr-12">
+                  <div
+                    class="text-black text-xs font-regular font-['Open Sans'] ml-4"
+                  >
+                    0
+                  </div>
+                </div>
+              </div>
+              <div class="ml-6 flex justify-between w-full items-center">
+                <p class="text-black text-xs font-semibold font-['Open Sans']">
+                  Jumlah Item
+                </p>
+                <div class="flex mt-1 mr-12">
+                  <div
+                    class="text-black text-xs font-regular font-['Open Sans'] ml-4"
+                  >
+                    10
+                  </div>
+                </div>
+              </div>
+              <hr class="mx-6 border-[#D8D8D8] border-dashed mt-2" />
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="flex items-center justify-center">
+      <button
+        type="button"
+        routerLink="/riwayatbill"
+        class="rounded-lg bg-[#40787F] p-2 ml-4 mr-4 mt-8 text-white text-center font-semibold font-['Open Sans'] w-full text-sm"
+      >
+        Bagikan (ini ke riwayatbill)
+      </button>
+    </div>
+  </body>
+</div>

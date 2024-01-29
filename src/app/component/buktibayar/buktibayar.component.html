@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Bukti Transaksi</title>
+  </head>
+  <div class="page">
+    <body [@fadeIn]="fadeInState">
+      <header>
+        <nav class="flex items-center justify-center">
+          <div class="items-center justify-center"></div>
+          <p class="text-gray-600 text-lg font-bold mt-12">PLN Pascabayar</p>
+        </nav>
+      </header>
+
+      <main class="mt-8">
+        <div class="m-8">
+          <div class="border shadow-sm p-6 rounded">
+            <div class="flex items-center">
+              <img class="w-20" src="./assets/bni.svg" alt="BNI" />
+            </div>
+            <p class="text-gray-600 text-lg text-center mb-1 mt-4 font-bold">
+              Transaksi Berhasil
+            </p>
+            <div class="flex flex-col items-start">
+              <div class="flex justify-between w-full mt-8">
+                <p class="font-normal mb-1 text-sm text-[#40787F]">
+                  Tanggal Transaksi
+                </p>
+                <!-- Menggunakan ml-auto pada teks di sebelah kanan -->
+                <p class="font-normal mb-1 text-sm text-black ml-auto">
+                  {{ getCurrentDateTime() | date : "dd MMM yyyy HH:mm:ss" }}
+                </p>
+              </div>
+              <div class="flex justify-between w-full mt-1">
+                <p class="font-normal mb-1 text-sm text-[#40787F]">
+                  No. Referensi
+                </p>
+                <!-- Menggunakan ml-auto pada teks di sebelah kanan -->
+                <p class="font-normal mb-1 text-sm text-black ml-auto">
+                  {{ generateRandomReference() }}
+                </p>
+              </div>
+
+              <div class="mt-1 flex justify-between w-full">
+                <p class="font-normal mb-1 text-sm text-[#40787F]">IDPEL</p>
+                <!-- Menggunakan ml-auto pada teks di sebelah kanan -->
+                <p class="font-normal mb-1 text-sm text-black ml-auto">
+                  {{ idpel }}
+                </p>
+              </div>
+
+              <div class="mt-1 flex justify-between w-full">
+                <p class="font-normal mb-1 text-sm text-[#40787F]">Nama</p>
+                <!-- Menggunakan ml-auto pada teks di sebelah kanan -->
+                <p class="font-normal mb-1 text-sm text-black ml-auto">
+                  SYE** ** **
+                </p>
+              </div>
+
+              <div class="mt-1 flex justify-between w-full">
+                <p class="font-normal mb-1 text-sm text-[#40787F]">
+                  Total Lembar Tagihan
+                </p>
+                <!-- Menggunakan ml-auto pada teks di sebelah kanan -->
+                <p class="font-normal mb-1 text-sm text-black ml-auto">1</p>
+              </div>
+
+              <div class="mt-1 flex justify-between w-full">
+                <p class="font-normal mb-1 text-sm text-[#40787F]">BL/TH</p>
+                <!-- Menggunakan ml-auto pada teks di sebelah kanan -->
+                <p class="font-normal mb-1 text-sm text-black ml-auto">
+                  JAN 2024
+                </p>
+              </div>
+            </div>
+
+            <div class="flex flex-col items-start">
+              <div class="mt-2 flex justify-between w-full">
+                <p class="font-semibold mb-1 text-sm text-[#40787F]">
+                  Admin Bank
+                </p>
+                <!-- Menggunakan ml-auto pada teks di sebelah kanan -->
+                <p class="font-normal mb-1 text-sm text-black ml-auto">
+                  Rp 3,000
+                </p>
+              </div>
+            </div>
+            <div></div>
+            <hr class="border-b mt-2 border-gray-100" />
+            <div>
+              <div class="mt-2 flex justify-between w-full">
+                <p class="font-semibold mb-1 text-sm text-[#40787F]">
+                  Total Bayar
+                </p>
+                <!-- Menggunakan ml-auto pada teks di sebelah kanan -->
+                <p class="font-semibold mb-1 text-sm text-[#40787F] ml-auto">
+                  Rp88,678
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="shadow-sm bg-[#40787F] w-full text-white font-semibold font-['Open Sans'] py-2 px-4 mt-4 rounded-lg"
+            routerLink="/home"
+          >
+            Kembali ke home
+          </button>
+        </div>
+      </main>
+    </body>
+  </div>
+</html>
