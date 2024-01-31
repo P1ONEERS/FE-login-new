@@ -1,89 +1,20 @@
-// // import { Injectable } from '@angular/core';
-// // import { Observable } from 'rxjs';
-// // import axios from 'axios';
-// // import { Login } from '../model/login.model';
 
-// // @Injectable({
-// //   providedIn: 'root'
-// // })
-// // export class LoginService {
-// //   private baseUrl = 'http://172.20.10.3:8080/api/auth';
-
-// //   constructor() { }
-
-// //   loginByHash(usernameOrEmail: string, password: string): Observable<Login> {
-// //     // Creating FormData object
-// //     const formData = new FormData();
-// //     formData.append('usernameOrEmail', usernameOrEmail);
-// //     formData.append('password', password);
-// //     console.log(formData);
-
-// //     // Using Axios for the HTTP request with form data
-// //     return new Observable<Login>(observer => {
-// //       axios.post<Login>(`${this.baseUrl}/login`, formData)
-// //         .then(response => {
-// //           console.log(response.data);
-// //           observer.next(response.data);
-// //           observer.complete();
-// //         })
-// //         .catch(error => {
-// //           observer.error(error);
-// //           console.log(error.data);
-// //         });
-// //     });
-// //   }
-// // }
-
-// import { Injectable } from '@angular/core';
-// import { Observable } from 'rxjs';
-// import axios from 'axios';
-// import { Login } from '../model/login.model';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class LoginService {
-//   private baseUrl = 'http://172.20.10.3:8080/api/auth';
-
-//   constructor() { }
-
-//   loginByHash(usernameOrEmail: string, password: string): Observable<Login> {
-//     const data = {
-//       usernameOrEmail: usernameOrEmail,
-//       password: password
-//     };
-
-//     const headers = {
-//       'Content-Type': 'application/json'
-//     };
-
-//     return new Observable<Login>(observer => {
-//       axios.post<Login>(`${this.baseUrl}/login`, data, { headers: headers })
-//         .then(response => {
-//           console.log(response.data);
-//           observer.next(response.data);
-//           observer.complete();
-//         })
-//         .catch(error => {
-//           observer.error(error);
-//           console.log(error.response.data);
-//         });
-//     });
-//   }
-// }
+// login.service.ts
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import axios from 'axios';
 import { Login } from '../model/login.model';
 import { Router } from '@angular/router';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private baseUrl = 'http://172.20.10.3:8080/api/auth';
+  private baseUrl = 'http://192.168.132.66:8080/api/auth';
+  private currentUser: any;
 
-  constructor(private router: Router ) { }
+  constructor(private router: Router, private userService: UserService) {}
 
   loginByHash(usernameOrEmail: string, password: string): Observable<Login> {
     const data = {
@@ -98,21 +29,24 @@ export class LoginService {
     return new Observable<Login>(observer => {
       axios.post<Login>(`${this.baseUrl}/login`, data, { headers: headers })
         .then(response => {
-          console.log(response.data);
-
           // Save the token in localStorage
           const token = response.data.accessToken;
           localStorage.setItem('token', token);
 
-          // Log localStorage
-          
+          // Set user information in UserService
+          this.userService.setUser(response.data);
+          this.currentUser = response.data;
+          console.log(this.currentUser.name);
+
 
           observer.next(response.data);
           observer.complete();
+          console.log('LoginService - Current User:', this.currentUser);
         })
         .catch(error => {
           observer.error(error);
           console.log(error.response.data);
+          console.error('LoginService - Login error:', error.response?.data || error.message);
         });
     });
   }
@@ -125,33 +59,26 @@ export class LoginService {
   getUserInfo(): any | null {
     const token = localStorage.getItem('token');
     
-    // Implementasi logika verifikasi token dan mendapatkan informasi user
-    // Pastikan untuk menyesuaikan dengan format dan algoritma verifikasi token Anda
+    // Implement logic to verify token and get user information
+    // Adjust this logic based on your token verification implementation
 
     return token; // Return null for now, you need to implement this logic
   }
 
- 
   logout(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
-      const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (token) {
-          console.log('Token in localStorage:', token);
-        } else {
-          console.log('No token found in localStorage');
-        }
+      console.log('Token in localStorage:', token);
+    } else {
+      console.log('No token found in localStorage');
+    }
   }
 
+  getCurrentUser(): any {
+    return this.currentUser;
+  }
 
-  // Fungsi untuk menampilkan isi localStorage di konsol
-  // logLocalStorage() {
-  //   const token = localStorage.getItem('token');
-
-  //   if (token) {
-  //     console.log('Token in localStorage:', token);
-  //   } else {
-  //     console.log('No token found in localStorage');
-  //   }
-  // }
 }
+

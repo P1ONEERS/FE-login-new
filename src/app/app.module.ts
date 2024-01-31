@@ -27,6 +27,7 @@ import { AdjustqtyComponent } from './component/adjustqty/adjustqty.component';
 import { LoginService } from './services/login.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ThousandSeparatorPipe } from './component/homescreen/thousand-separator.pipe';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     RiwayatbillComponent,
     AdjustqtyComponent,
     NotFoundComponent,
+    ThousandSeparatorPipe,
   ],
   imports: [
     CommonModule,

@@ -25,8 +25,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent},
-  { path: 'splitbill', component: SplitbillComponent },
-  { path: 'pembayaran', component: PembayaranComponent},
+  { path: 'splitbill', component: SplitbillComponent, canActivate:[AuthGuard]},
+  { path: 'pembayaran', component: PembayaranComponent, canActivate: [AuthGuard]},
   { path: 'home', component: HomescreenComponent, canActivate: [AuthGuard]},
   { path: 'hasilscan', component: HasilscanComponent, canActivate: [AuthGuard]},
   { path: 'coba', component: CobacobaComponent, canActivate: [AuthGuard]},
